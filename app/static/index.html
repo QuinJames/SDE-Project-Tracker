@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-us" ng-app="trackerApp">
+    <head>
+        <title>Software Projects Feedback</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta charset="UTF-8">
+
+        <!-- load bootstrap and fontawesome via CDN -->
+        <link rel="stylesheet" href="static/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+
+        <script src="static/bower_components/angular/angular.min.js"></script>
+        <script src="static/bower_components/angular-route/angular-route.min.js"></script>
+        <script src="static/bower_components/angular-resource/angular-resource.min.js"></script>
+        <script src="static/js/app.js"></script>
+        <script src="static/js/routes.js"></script>
+        <script src="static/js/services.js"></script>
+        <script src="static/js/controllers.js"></script>
+        <script src="static/js/directives.js"></script>
+    </head>
+    <body>
+
+        <header ng-controller="loginController">
+			<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#/">SDE Project Feedback</a>
+				</div>
+
+				<!--<ul class="nav navbar-nav navbar-right">
+					<li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                    <div ng-controller="logoutController">
+                        <a ng-click='logout()' class="btn btn-default">Logout</a>
+                    </div>
+				</ul> -->
+                <div ng-show="isLoggedIn()" ng-controller="logoutController" class="nav navbar-nav navbar-right">
+                        <a ng-click='logout()' class="btn btn-default">Logout</a>
+                </div>
+			</div>
+			</nav>
+		</header>
+
+        <div class="container">
+            <div ng-view></div>
+            
+		</div>
+
+    </body>
+</html>
