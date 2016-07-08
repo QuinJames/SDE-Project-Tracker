@@ -16,16 +16,7 @@ trackerApp.config(function($routeProvider){
         controller: 'projectController'
     })
     .when('/project_list/:projectName', {
-        templateUrl: 'status/html/project_list.html',
-        controller: 'projectController'
+        templateUrl: 'static/html/project_questions.html',
+        controller: 'projectQuestionsController'
     });
-});
-
-trackerApp.run(function ($rootScope, $location, $route, authService) {
-  $rootScope.$on('$routeChangeStart', function (event, next, current) {
-    if (authService.isLoggedIn() === false) {
-      $location.path('/login');
-      $route.reload();
-    }
-  });
 });

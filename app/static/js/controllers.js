@@ -33,7 +33,34 @@ trackerApp.controller('logoutController', ['$scope', '$location', 'authService',
     };
 }]);
 
-trackerApp.controller('projectController', ['$scope', '$location', function($scope, $location){
+trackerApp.controller('projectController', ['$scope', '$location', '$log', '$routeParams', 'projectService', function($scope, $location, $log, $routeParams, projectService){
     
-    $scope.projectList = ["HDA", "NPS Tracker", "Payroll Reporter"];
+    
+    $scope.projectList = ["Handset Discount App", "NPS Tracker", 
+                          "Payroll Reporter", "Port Mapper", "FWA Calculator", "HLR GUI"];
+    
+    $scope.project = $routeParams.project || null;
+    
+    /*$scope.$watch('project', function(){
+        projectService.project = $scope.project;    
+    });*/
+    
+    $scope.clicked = function(project){
+        $scope.project = project;
+        projectService.project = project;
+        //console.log("Clicked: " + project);
+        //console.log("/project_list/" + project)
+        $location.path("/project_list/" + project);
+    };
+    
+}]);
+
+trackerApp.controller('projectQuestionsController', ['$scope', '$location', '$routeParams', 'projectService', function($scope, $location, $routeParams, projectService){
+    
+    $scope.project = projectService.project;
+    $scope.fieldTwo = ""
+    $scope.submit = function(){
+        
+        console.log("submitted");
+    }
 }]);

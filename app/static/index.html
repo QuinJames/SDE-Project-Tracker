@@ -32,9 +32,15 @@
                         <a ng-click='logout()' class="btn btn-default">Logout</a>
                     </div>
 				</ul> -->
-                <div ng-show="isLoggedIn()" ng-controller="logoutController" class="nav navbar-nav navbar-right">
-                        <a ng-click='logout()' class="btn btn-default">Logout</a>
+                <ul class="nav navbar-nav navbar-right">
+					<li><a href="#/"><i class="fa fa-home"></i> Home</a></li>
+                    <div ng-show="isLoggedIn()" ng-controller="logoutController" class="nav navbar-nav navbar-right">
+                        <li><a a href="#/login" ng-click='logout()' class="fa fa-home">Logout</a></li>
                 </div>
+				</ul>
+               <!-- <div ng-show="isLoggedIn()" ng-controller="logoutController" class="nav navbar-nav navbar-right">
+                        <a ng-click='logout()' class="btn btn-default">Logout</a>
+                </div> -->
 			</div>
 			</nav>
 		</header>

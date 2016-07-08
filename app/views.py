@@ -12,7 +12,7 @@ def index():
 
 @app.route('/api/v1.0/login', methods=['POST'])
 def login():
-    # print request.get_json()
+    print request.get_json()
     username = request.get_json().get('username')
     password = request.get_json().get('password')
     auth_check = utils.authenticate(username, password)

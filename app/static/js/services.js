@@ -21,7 +21,7 @@ trackerApp.service('authService', ['$q', '$timeout', '$http', function($q, $time
         //send post request to server
         $http.post('/api/v1.0/login', {username: username, password:password})
         .success(function(data, status) {
-            console.log(data.status);
+            //console.log(data.status);
             if(status === 200 && data.status){
                 user = true;
                 deferred.resolve();
@@ -56,4 +56,9 @@ trackerApp.service('authService', ['$q', '$timeout', '$http', function($q, $time
     }
     
 }]);
+
+
+trackerApp.service('projectService', function(){
+    this.project = "";
+});
 
