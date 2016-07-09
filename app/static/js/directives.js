@@ -3,12 +3,13 @@ trackerApp.directive("questionPanel", function(){
        restrict: 'E',
        templateUrl: "static/html/questionPanel.htm",
        scope: {
-           header: "@",
+           projectModel: "="
+           /*header: "@",
            fieldOne: "@",
            fieldTwo: "@",
            fieldOneModel: "@",
            fieldTwoModel: "@",
-           commentModel: "@"
+           commentModel: "@"*/
        }
    }; 
 });

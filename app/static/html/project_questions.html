@@ -1,5 +1,41 @@
 <a href="/#/project_list" class="btn btn-primary"> Project List </a>
 <hr/>
-<div ng-controller="projectQuestionsController">
-  <question-panel header="Ease of Use" field-one="Usability" field-two="Web Accessibility" field-one-model="project.ease.usability" field-two-model="project.ease.webaccess" comment-model="project.ease.comment"> </question-panel>
+<!--<div ng-controller="projectQuestionsController" ng-repeat="p in projectModel">
+<!--  <question-panel header="Ease of Use" field-one="Usability" field-one-model="project.ease.usability" field-two="Web Accessibility" field-two-model="project.ease.webaccess" comment-model="project.ease.comment"> </question-panel> 
+    
+    <question-panel project-model="p"></question-panel>
+</div> -->
+<h4> Ease of Use</h4>
+<i>Please rate the below criteria. 1 is low and 4 is high</i>
+<br>
+<br>
+<div class="form-group row">
+<label class="col-sm-2 form-control-label">Usability</label>
+<div class="col-sm-10">
+        <input type="radio" ng-model='project.ease.usability' value="1" />1
+        <input type="radio" ng-model='project.ease.usability' value="2" />2
+        <input type="radio" ng-model='project.ease.usability' value="3" />3
+        <input type="radio" ng-model='project.ease.usability' value="4" />4
+        <input type="radio" ng-model='project.ease.usability' value="N/A"/>N/A
 </div>
+
+</div>
+<div class="form-group row">
+<label  class="col-sm-2 form-control-label">Web Accessibility</label>
+    <div class="col-sm-10">
+  <!--<input type="email" class="form-control" id="inputEmail3" placeholder="Email"> -->
+        <input type="radio" ng-model="project.ease.webaccess" value="1" />1
+        <input type="radio" ng-model="project.ease.webaccess" value="2" />2
+        <input type="radio" ng-model="project.ease.webaccess" value="3" />3
+        <input type="radio" ng-model="project.ease.webaccess" value="4" />4
+        <input type="radio" ng-model="project.ease.webaccess" value="N/A"/>N/A
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="comment">Additional Comment:</label>
+        <textarea class="form-control" rows="5" id="comment" ng-model="project.ease.comment"></textarea>
+</div>
+<pre>
+{{ project|json}}
+</pre>
