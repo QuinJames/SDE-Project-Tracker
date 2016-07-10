@@ -57,18 +57,11 @@ trackerApp.controller('projectController', ['$scope', '$location', '$log', '$rou
 
 trackerApp.controller('projectQuestionsController', ['$scope', '$location', '$routeParams', 'projectService', function($scope, $location, $routeParams, projectService){
     
-    $scope.project = projectService.project;
-    $scope.projectModel = [
-        {
-            header: "Ease of Use",
-            fieldOne: "Usability",
-            fieldOneModel: "projectModel.ease.usability",
-            fieldTwo: "Web Accessibility",
-            fieldTwoModel: "projectModel.ease.webaccess",
-            commentModel: "project.ease.comment"
-        }];
+    $scope.projectName = projectService.project;
+    $scope.project = {};
     $scope.submit = function(){
         
-        console.log("submitted");
+        //Submit to server for processing
+        console.log($scope.project);
     }
 }]);

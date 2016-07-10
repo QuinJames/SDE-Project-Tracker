@@ -1,1 +1,1 @@
-var trackerApp = angular.module("trackerApp", ["ngRoute", "ngResource"]);
+var trackerApp = angular.module("trackerApp", ["ngRoute", "ngMaterial"]);
