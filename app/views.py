@@ -34,3 +34,11 @@ def logout():
 def project_list():
     pass
 
+@app.route('/api/status', methods=['GET'])
+def status():
+    if session.get('logged_in'):
+        if session['logged_in']:
+            return jsonify({'status': True});
+        else:
+            return jsonify({'status': False});
+

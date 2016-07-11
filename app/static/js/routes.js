@@ -18,5 +18,18 @@ trackerApp.config(function($routeProvider){
     .when('/project_list/:projectName', {
         templateUrl: 'static/html/project_questions.html',
         controller: 'projectQuestionsController'
+    })
+    .otherwise({
+        redirectTo: '/'
     });
 });
+
+
+/*trackerApp.run(function ($rootScope, $location, $route, authService) {
+  $rootScope.$on('$routeChangeStart', function (event, next, current) {
+    if (authService.isLoggedIn() === false) {
+      $location.path('/login');
+      $route.reload();
+    }
+  });
+});*/

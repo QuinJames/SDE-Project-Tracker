@@ -17,6 +17,7 @@
         <script src="static/bower_components/angular-aria/angular-aria.min.js"></script>
         <script src="static/bower_components/angular-messages/angular-messages.min.js"></script>
         <script src="static/bower_components/angular-material/angular-material.min.js"></script>
+        <script src="static/bower_components/angular-cookies/angular-cookies.min.js"></script>
         <script src="static/js/app.js"></script>
         <script src="static/js/routes.js"></script>
         <script src="static/js/services.js"></script>
@@ -29,7 +30,7 @@
 			<nav class="navbar navbar-default">
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#/">SDE Project Feedback</a>
+					<a class="navbar-brand" href="#/project_list">SDE Project Feedback</a>
 				</div>
 
 				<!--<ul class="nav navbar-nav navbar-right">
@@ -39,7 +40,7 @@
                     </div>
 				</ul> -->
                 <ul class="nav navbar-nav navbar-right">
-					<li><a href="#/"><i class="fa fa-home"></i> Home</a></li>
+					<!-- <li><a href="#/"><i class="fa fa-home"></i> Home</a></li> -->
                     <div ng-show="isLoggedIn()" ng-controller="logoutController" class="nav navbar-nav navbar-right">
                         <li><a a href="#/login" ng-click='logout()' class="fa fa-home">Logout</a></li>
                 </div>

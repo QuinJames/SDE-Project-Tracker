@@ -4,11 +4,9 @@
     </div>
 </div>
 <div class="row" ng-controller="projectController">
-    <div class="col-md-5 col-md-offset-3">
         <hr/>
         <div ng-repeat="project in projectList">
-            <a class="btn btn-primary btn-lg center-block" ng-click="clicked(project)">{{ project }}</a>
+            <md-button class="md-raised md-primary" ng-click="clicked(project)">{{ project }}</md-button>
             <br>
         </div>
-    </div>
 </div>

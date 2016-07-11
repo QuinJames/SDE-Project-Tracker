@@ -1,8 +1,16 @@
-trackerApp.controller('loginController', ['$scope', '$location', 'authService', function($scope, $location, authService){
+trackerApp.controller('loginController', ['$scope', '$location','$route', '$cookies', 'authService', 'userService' , function($scope, $location, $route, $cookies, authService, userService){
+    
+    if($cookies.get('user') === 'true')
+    {
+        $location.path('/project_list');
+        $route.reload();
+    }
+    
     $scope.login = function(){
         
         $scope.error = false;
         $scope.disabled = true;
+        userService.user = $scope.loginForm.username;
         authService.login($scope.loginForm.username, $scope.loginForm.password)
         .then(function(){
             $location.path('/project_list');
@@ -24,7 +32,7 @@ trackerApp.controller('loginController', ['$scope', '$location', 'authService', 
 }]);
 
 
-trackerApp.controller('logoutController', ['$scope', '$location', 'authService', function($scope, $location, authService){
+trackerApp.controller('logoutController', ['$scope', '$location', '$cookies', 'authService', function($scope, $location, $cookies, authService){
     $scope.logout = function(){
         authService.logout()
         .then(function(){
@@ -33,8 +41,13 @@ trackerApp.controller('logoutController', ['$scope', '$location', 'authService',
     };
 }]);
 
-trackerApp.controller('projectController', ['$scope', '$location', '$log', '$routeParams', 'projectService', function($scope, $location, $log, $routeParams, projectService){
+trackerApp.controller('projectController', ['$scope', '$location', '$log', '$routeParams', '$route', '$cookies', 'projectService', 'authService', function($scope, $location, $log, $routeParams, $route, $cookies, projectService, authService){
     
+    if (authService.isLoggedIn() === false && $cookies.get('user') === false){
+        $location.path('/login');
+        $route.reload();
+        
+    }
     
     $scope.projectList = ["Handset Discount App", "NPS Tracker", 
                           "Payroll Reporter", "Port Mapper", "FWA Calculator", "HLR GUI"];
@@ -55,10 +68,17 @@ trackerApp.controller('projectController', ['$scope', '$location', '$log', '$rou
     
 }]);
 
-trackerApp.controller('projectQuestionsController', ['$scope', '$location', '$routeParams', 'projectService', function($scope, $location, $routeParams, projectService){
+trackerApp.controller('projectQuestionsController', ['$scope', '$location', '$routeParams', '$route', '$cookies', 'projectService', 'userService', 'authService', function($scope, $location, $routeParams, $route, $cookies, projectService, userService, authService){
+    
+    if (authService.isLoggedIn() === false && $cookies.get('user') === false){
+        $location.path('/login');
+        $route.reload();
+        
+    }
     
     $scope.projectName = projectService.project;
     $scope.project = {};
+    $scope.project.user = userService.user;
     $scope.submit = function(){
         
         //Submit to server for processing
