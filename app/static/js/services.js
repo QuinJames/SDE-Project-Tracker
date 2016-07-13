@@ -26,6 +26,7 @@ trackerApp.service('authService', ['$q', '$timeout', '$http', '$cookies', functi
             if(status === 200 && data.status){
                 user = true;
                 $cookies.put('user', 'true');
+                $cookies.put('username', username);
                 deferred.resolve();
             }else {
                 user = false
@@ -64,7 +65,7 @@ trackerApp.service('authService', ['$q', '$timeout', '$http', '$cookies', functi
     
     function getUserStatus() {
         
-    }return $http.get('/api/status')
+    }return $http.get('/api/v1.0/status')
     .success(function(data) {
         if(data.status) {
             user = true;
@@ -87,3 +88,4 @@ trackerApp.service('projectService', function(){
 trackerApp.service('userService', function(){
    this.user = ""; 
 });
+

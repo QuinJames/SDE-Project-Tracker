@@ -2,6 +2,7 @@ trackerApp.controller('loginController', ['$scope', '$location','$route', '$cook
     
     if($cookies.get('user') === 'true')
     {
+        userService.user = $cookies.get('username');
         $location.path('/project_list');
         $route.reload();
     }
@@ -41,36 +42,46 @@ trackerApp.controller('logoutController', ['$scope', '$location', '$cookies', 'a
     };
 }]);
 
-trackerApp.controller('projectController', ['$scope', '$location', '$log', '$routeParams', '$route', '$cookies', 'projectService', 'authService', function($scope, $location, $log, $routeParams, $route, $cookies, projectService, authService){
+trackerApp.controller('projectController', ['$scope', '$location', '$log', '$routeParams', '$route', '$cookies','$http', 'projectService', 'authService', function($scope, $location, $log, $routeParams, $route, $cookies, $http, projectService, authService){
     
-    if (authService.isLoggedIn() === false && $cookies.get('user') === false){
+    if (authService.isLoggedIn() === false || $cookies.get('user') === false){
+        authService.logout();
         $location.path('/login');
         $route.reload();
         
     }
     
-    $scope.projectList = ["Handset Discount App", "NPS Tracker", 
-                          "Payroll Reporter", "Port Mapper", "FWA Calculator", "HLR GUI"];
+    //$scope.projectList = ["Handset Discount App", "NPS Tracker", 
+    //                      "Payroll Reporter", "Port Mapper", "FWA Calculator", "HLR GUI"];
+    
+    $http.get('/api/v1.0/getProjects')
+    .success(function(data){
+        //console.log(data);
+        if(data.status == true) {
+            $scope.projectList = data.project_list;
+        }
+        else {
+            $scope.projectList = null;
+        }
+    })
+    .error(function(data){
+        $scope.projectList = null;
+    })
     
     $scope.project = $routeParams.project || null;
-    
-    /*$scope.$watch('project', function(){
-        projectService.project = $scope.project;    
-    });*/
     
     $scope.clicked = function(project){
         $scope.project = project;
         projectService.project = project;
-        //console.log("Clicked: " + project);
-        //console.log("/project_list/" + project)
         $location.path("/project_list/" + project);
     };
     
 }]);
 
-trackerApp.controller('projectQuestionsController', ['$scope', '$location', '$routeParams', '$route', '$cookies', 'projectService', 'userService', 'authService', function($scope, $location, $routeParams, $route, $cookies, projectService, userService, authService){
+trackerApp.controller('projectQuestionsController', ['$q', '$scope', '$location', '$routeParams', '$route', '$cookies', '$http', 'projectService', 'userService', 'authService', function($q, $scope, $location, $routeParams, $route, $cookies, $http, projectService, userService, authService){
     
-    if (authService.isLoggedIn() === false && $cookies.get('user') === false){
+    if (authService.isLoggedIn() === false || $cookies.get('user') === false){
+        authService.logout();
         $location.path('/login');
         $route.reload();
         
@@ -80,8 +91,21 @@ trackerApp.controller('projectQuestionsController', ['$scope', '$location', '$ro
     $scope.project = {};
     $scope.project.user = userService.user;
     $scope.submit = function(){
-        
+        var deferred = $q.defer();    
         //Submit to server for processing
         console.log($scope.project);
-    }
+        $http.post('/api/v1.0/submitScores', $scope.project)
+        .success(function(data, status) {
+            //console.log(data.status);
+            if(status === 200 && data.status){
+                deferred.resolve();
+            }else {
+                deferred.reject();
+            }
+        })
+        .error(function(data){
+            deferred.reject();
+        });
+        return deferred.promise;
+    };
 }]);

@@ -4,12 +4,13 @@
         <title>Software Projects Feedback</title>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta charset="UTF-8">
-
+        
+        <link rel='shortcut icon' type='image/x-icon' href='img/apple.ico'/>
         <!-- load bootstrap and fontawesome via CDN -->
         <link rel="stylesheet" href="static/bower_components/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="static/bower_components/angular-material/angular-material.min.css" />
 
-
+        
         <script src="static/bower_components/angular/angular.min.js"></script>
         <script src="static/bower_components/angular-route/angular-route.min.js"></script>
         <script src="static/bower_components/angular-resource/angular-resource.min.js"></script>
@@ -28,9 +29,10 @@
 
         <header ng-controller="loginController">
 			<nav class="navbar navbar-default">
+            <md-toolbar class="md-toolbar-tools">
 			<div class="container">
 				<div class="navbar-header">
-					<a class="navbar-brand" href="#/project_list">SDE Project Feedback</a>
+					<a href="#/project_list">SDE Project Feedback</a>
 				</div>
 
 				<!--<ul class="nav navbar-nav navbar-right">
@@ -42,13 +44,14 @@
                 <ul class="nav navbar-nav navbar-right">
 					<!-- <li><a href="#/"><i class="fa fa-home"></i> Home</a></li> -->
                     <div ng-show="isLoggedIn()" ng-controller="logoutController" class="nav navbar-nav navbar-right">
-                        <li><a a href="#/login" ng-click='logout()' class="fa fa-home">Logout</a></li>
+                        <a a href="#/login" ng-click='logout()'>Logout</a>
                 </div>
 				</ul>
                <!-- <div ng-show="isLoggedIn()" ng-controller="logoutController" class="nav navbar-nav navbar-right">
                         <a ng-click='logout()' class="btn btn-default">Logout</a>
                 </div> -->
-			</div>
+			 </div>
+            </md-toolbar>
 			</nav>
 		</header>
 

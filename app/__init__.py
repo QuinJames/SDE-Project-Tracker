@@ -8,4 +8,6 @@ app.config.from_object(BaseConfig)
 bcrypt = Bcrypt(app)
 db = SQLAlchemy(app)
 
+from app.models import Project, Engineer, EngineerProject, Rating
+
 from app import views

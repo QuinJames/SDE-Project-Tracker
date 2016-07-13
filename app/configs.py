@@ -8,5 +8,6 @@ class BaseConfig(object):
     DOMAIN = "@digicelgroup.local"
     DEBUG = True
     BCRYPT_LOG_ROUNDS = 13
+    SQLALCHEMY_DATABASE_URI = 'mysql://rram:digicel123@127.0.0.1/project_tracker'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = 'project_feedback_application'
